@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61.2", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "suid"
+authors = [
+    {name = "Anton Benderskiy", email = "loderan@ruservice.ru"}
+]
+description = "Generates sortable, date/time-containing, human friendly unique string IDs"
+requires-python = ">=3.8"
+keywords = ["python"]
+license = {text = "MIT License"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dynamic = ["version", "readme", "dependencies", "optional-dependencies"]
+
+[project.urls]
+"Homepage" = "https://github.com/ruanton/suid"
+"Bug Tracker" = "https://github.com/ruanton/suid/issues"
+
+[tool.setuptools.dynamic]
+version = {file = "VERSION"}
+readme = {file = ["README.rst", "CHANGES.rst"], content-type = "text/x-rst"}
+dependencies = {file = "requirements.txt"}
+optional-dependencies.testing = {file = ["requirements-testing.txt"]}
+
+[tool.setuptools.packages.find]
+exclude = ["tests"]
+namespaces = false
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--strict-markers"
+testpaths = [
+    "suid",
+    "tests",
+]
