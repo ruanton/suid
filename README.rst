@@ -41,24 +41,24 @@ Generate a unique ID containing the current date/time::
 
     >>> from suid import suid_gen
     >>> suid_gen()
-    'zzrwd5duy037pcuuzpz4pstm'
+    'by6wtze6jduq6ksj4tbsnjcx'
 
 Generate a unique ID of the specified length::
 
     >>> suid_gen(length=32)
-    'zzrwd6d7wqd314g64mvtw7r3w38qdphr'
+    'by6wtzvyyq380mc4fdyv9q1p1bbyr1vp'
 
 Generate a unique ID containing a custom date/time::
 
     >>> from datetime import datetime, timezone
     >>> dt = datetime(year=2023, month=11, day=10, hour=14, minute=26, second=15, microsecond=1234, tzinfo=timezone.utc)
     >>> suid_gen(at=dt)
-    'zzrmn7utjrkbfp5s7mwpz6bc'
+    'by640s7bh6vc9rk2s5ud6wvw'
 
 Extract encoded date/time from ID::
 
     >>> from suid import suid_to_datetime
-    >>> suid_to_datetime('zzrmn7utjrkbfp5s7mwpz6bc')
+    >>> suid_to_datetime('by640s7bh6vc9rk2s5ud6wvw')
     datetime.datetime(2023, 11, 10, 14, 26, 15, 1234, tzinfo=datetime.timezone.utc)
 
 There is a helper function to get the current date/time, which can be more precise then the
@@ -66,5 +66,5 @@ standard datetime.now(tz=timezone.utc)::
 
     >>> from suid import utcnow
     >>> utcnow()
-    datetime.datetime(2023, 11, 11, 11, 30, 8, 371764, tzinfo=datetime.timezone.utc)
+    datetime.datetime(2023, 11, 26, 9, 0, 35, 886315, tzinfo=datetime.timezone.utc)
 

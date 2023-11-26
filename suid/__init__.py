@@ -25,12 +25,12 @@ UNIX_TIME_MAX_SUPPORTED = 2**59 * 50 - 1;  """Maximum supported value of time_ns
 DATETIME_MAX_SUPPORTED = DATETIME_UNIX_EPOCH + timedelta(microseconds=int(UNIX_TIME_MAX_SUPPORTED / 1000))
 
 # noinspection SpellCheckingInspection
-BASE32_ENCODE_ALPHABET = 'nscemwruvytbdfghj0123456789kpqzx'
+BASE32_ENCODE_ALPHABET = '0123456789bcdefghjkmnpqrstuvwxyz'
 BASE32_ENCODE_ALPHABET_REVERSED = {c: i for i, c in enumerate(BASE32_ENCODE_ALPHABET)}
 assert len(BASE32_ENCODE_ALPHABET) == 32
 
 # noinspection SpellCheckingInspection
-BASE16_ENCODE_ALPHABET = 'zxnscemwrbdhkpqy'  # the letters chosen are the neatest
+BASE16_ENCODE_ALPHABET = 'bcdehkmnpqrswxyz'  # the letters chosen are the neatest
 BASE16_ENCODE_ALPHABET_REVERSED = {c: i for i, c in enumerate(BASE16_ENCODE_ALPHABET)}
 assert len(BASE16_ENCODE_ALPHABET) == 16
 
@@ -167,12 +167,12 @@ def _test_time_ns_precision() -> None:
         if ns_elapsed > TIME_NS_PRECISION_TEST_MAX_DURATION or len(values) >= 1000:
             break
 
-    precision_measured = int(ns_elapsed / len(values))
     precision_ideal = ns_elapsed / cnt
-
     if precision_ideal > TIME_NS_PRECISION_MIN_ACCEPTED:
         log.warning(f'CPU is too busy, failed to check time_ns precision, precision_ideal = {precision_ideal:.2f}')
-    elif precision_measured > TIME_NS_PRECISION_MIN_ACCEPTED:
+
+    precision_measured = int(ns_elapsed / len(values))
+    if precision_measured > TIME_NS_PRECISION_MIN_ACCEPTED:
         log.warning(f'measured time_ns precision is too low: {precision_measured}, try to install win-precise-time')
 
 

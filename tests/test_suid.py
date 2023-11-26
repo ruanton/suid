@@ -54,6 +54,9 @@ def test_suid_gen():
         values.add(suid_gen())
     assert len(values) == 1000
 
+    sorted_values = sorted(list(values))
+    assert all(suid_to_datetime(sorted_values[x+1]) >= suid_to_datetime(sorted_values[x]) for x in range(999))
+
     # from time import perf_counter_ns
     # cnt = 10000
     # ns_start = perf_counter_ns()
